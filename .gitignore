@@ -1,0 +1,14 @@
+# Object files
+*.o
+
+# Parameter files
+runhydro.h
+bs
+
+# Binary
+scf
+
+#Output files
+Bi_*.info
+Bi_*.1
+Bi_*.2

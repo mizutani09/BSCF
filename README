@@ -1,0 +1,31 @@
+BSCF method
+======================
+//Kundan Kadam Apr 5 2016
+
+Purpose:
+   Creates a 2d rotating bipolytropic spheroid or torus. 
+   This means that the star can have a core and envelope 
+   with different polytropic indices and there can be a 
+   molecular weight jump between the core-envelope boundary.
+   
+Input parameters (Specified in file runhydro.h):
+1. Guesses for locations of points A, B and C.
+   A(ax.ay) = equatorial boundary of rotating star/ outer edge of torus torus
+   B(bx,by) = axial boundary of rotating star/ inner edge of torus torus
+   C(ix, 2) = core/ envelope interface
+   
+2. np1 = polytropic index of the core
+   np2 = polytropic index of the envelope
+   mu1 = average molecular weight of the core
+   mu2 = average molecular weight of the envelope
+
+3. eps = convergance criterion
+   numr = resolution in R-direction
+   numz = resolution in z-direction
+
+How to use:
+1. Specify relevant parameters in file runhydro.h
+2. >> make cl
+   >> make
+   >> ./scf
+   
