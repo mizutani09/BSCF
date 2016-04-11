@@ -24,8 +24,9 @@ Input parameters (Specified in file runhydro.h):
    numz = resolution in z-direction
 
 How to use:
-1. Specify relevant parameters in file runhydro.h
-2. >> make cl
+1. Specify FORTRAN compiler in the makefile
+2. Specify relevant parameters in file runhydro.h
+3. >> make cl
    >> make
-   >> ./scf
+   >> ./bscf
    
