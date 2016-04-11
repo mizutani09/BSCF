@@ -78,10 +78,5 @@ subroutine findj(m, J2, J4, J6)
    JJ4 = JJ4 * (-4 * pi)/ (m * (Re)**4) * dr * dz
    JJ6 = JJ6 * (-4 * pi)/ (m * (Re)**6) * dr * dz
 
-
-
-   print*, "J2 = ", j2, jj2 
-   print*, "J4 = ", j4, jj4
-   print*, "J6 = ", j6, jj6
    
 end subroutine findj

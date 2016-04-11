@@ -42,7 +42,7 @@ program main
     
 	
       call cpu_time(cpu1)
-      print*, "SCF Started!!"   
+      print*, "BSCF Started!!"   
       
       allocate(rho3d(numr,numz,hydrophi))
       allocate(pres3d(numr,numz,hydrophi))

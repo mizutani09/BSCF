@@ -14,10 +14,10 @@ findmass.F90 findmom.F90 getinfo.F90 virial.F90 findvol.F90 findj.F90
 
 OFILES= $(F90FILES:.F90=.o) 
 
-scf:$(OFILES)
-#	$(FC) $(OFILES) -o scf
-	$(FC) $(OFILES) -O0 -mcmodel=medium -shared-intel -o scf   #works
-#	$(FC) $(OFILES) -o scf
+bscf:$(OFILES)
+#	$(FC) $(OFILES) -o bscf
+	$(FC) $(OFILES) -O0 -mcmodel=medium -shared-intel -o bscf   #works
+#	$(FC) $(OFILES) -o bscf
 
 $(OFILES): runhydro.h
 .f90.o: runhydro.h
@@ -50,7 +50,7 @@ $(OFILES):$(F90FILES)
 	
 cl:
 #	/bin/rm -f *.o hydro
-	rm -f *.o scf	
+	rm -f *.o bscf	
 #ifort -g -c *.F90
 #ifort main.o potential_solver.o setup.o potsetup.o bessel.o helmadi.o tm.o sm.o realft.o tridagr.o tridagz.o elle.o ellf.o gammln.o rf.o rd.o -o hydro
 
