@@ -17,7 +17,10 @@
       REAL rd,x,y,z,ERRTOL,TINY,BIG,C1,C2,C3,C4,C5,C6
       PARAMETER (ERRTOL=.05,TINY=1.0e-25,BIG=4.5E21,C1=3./14.,C2=1./6.,C3=9./22.,C4=3./26.,C5=.25*C3,C6=1.5*C4)
       REAL alamb,ave,delx,dely,delz,ea,eb,ec,ed,ee,fac,sqrtx,sqrty,sqrtz,sum,xt,yt,zt
-      if(min(x,y).lt.0..or.min(x+y,z).lt.TINY.or.max(x,y,z).gt.BIG)pause 'invalid arguments in rd'
+      if(min(x,y).lt.0..or.min(x+y,z).lt.TINY.or.max(x,y,z).gt.BIG) then
+            print *, 'invalid arguments in rd'
+            stop
+      endif
       xt=x
       yt=y
       zt=z
