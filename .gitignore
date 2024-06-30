@@ -6,9 +6,21 @@ runhydro.h
 bs
 
 # Binary
-scf
+bscf
 
 #Output files
 Bi_*.info
 Bi_*.1
 Bi_*.2
+
+*.dat
+*.bin
+.out
+
+star1
+star1_confirm
+star2
+pres1
+pres2
+
+model_details
