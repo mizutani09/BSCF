@@ -29,11 +29,11 @@ $(EXE_DIR):
 	mkdir -p $(EXE_DIR)
 
 # make executable
-$(EXECUTABLE): $(OBJ_FILES) runhydro.h
+$(EXECUTABLE): $(OBJ_FILES)
 	$(FC) $(OBJ_FILES) -o $(EXECUTABLE)
 
 # make object files
-$(OBJ_DIR)%.o : %.F90
+$(OBJ_DIR)%.o : %.F90 runhydro.h
 	$(FC) $(FFLAGS) -c $< -o $@
 
 clean:
