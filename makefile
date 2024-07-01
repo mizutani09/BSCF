@@ -1,5 +1,6 @@
 #compiler
-FC=$(HOME)/mesasdk/bin/gfortran
+# FC=$(HOME)/mesasdk/bin/gfortran
+FC=/usr/bin/gfortran
 FFLAGS=-O3 -fdefault-real-8
 
 F90FILES=bessel.F90 elle.F90 ellf.F90 gammln.F90\
