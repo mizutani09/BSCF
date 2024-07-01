@@ -159,16 +159,16 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
 !kappa1 kappa2 rho1i rho2i VC count cput omega 
 
  
-  open(unit=10,file=filename)
-  write(10,*) trim(char_np1)," ",trim(char_np2)," ",trim(char_mu1)," ",trim(char_mu2),     &
-  " ",trim(char_ix)," ",trim(char_by)," ",trim(char_ax), " ",trim(char_numr)," ",          &
-  trim(char_numz)," ",trim(char_rcore)," ",trim(char_rb)," ",trim(char_m_core)," ",        &
-  trim(char_frac_core)," ",trim(char_h_0)," ",trim(char_m)," ",trim(char_vol)," ",         &
-  trim(char_am), " ",trim(char_T)," ", trim(char_W)," ",trim(char_3P)," ",trim(char_p_max),&
-  " ",trim(char_kappa1)," ",trim(char_kappa1)," ",trim(char_rho1i)," ",trim(char_rho2i),   &
-  " ",VC," ", trim(char_count), " ",trim(char_cput), " ", trim(char_omega), " ",           &
-  trim(char_mac_x), " ", trim(char_mac_y), " ", trim(char_stab)
-  close(10)
+  ! open(unit=10,file=filename)
+  ! write(10,*) trim(char_np1)," ",trim(char_np2)," ",trim(char_mu1)," ",trim(char_mu2),     &
+  ! " ",trim(char_ix)," ",trim(char_by)," ",trim(char_ax), " ",trim(char_numr)," ",          &
+  ! trim(char_numz)," ",trim(char_rcore)," ",trim(char_rb)," ",trim(char_m_core)," ",        &
+  ! trim(char_frac_core)," ",trim(char_h_0)," ",trim(char_m)," ",trim(char_vol)," ",         &
+  ! trim(char_am), " ",trim(char_T)," ", trim(char_W)," ",trim(char_3P)," ",trim(char_p_max),&
+  ! " ",trim(char_kappa1)," ",trim(char_kappa1)," ",trim(char_rho1i)," ",trim(char_rho2i),   &
+  ! " ",VC," ", trim(char_count), " ",trim(char_cput), " ", trim(char_omega), " ",           &
+  ! trim(char_mac_x), " ", trim(char_mac_y), " ", trim(char_stab)
+  ! close(10)
 
   open(unit=13,file="autoread.dat")
   write(13,*) trim(char_np1)," ",trim(char_np2)," ",trim(char_mu1)," ",trim(char_mu2),     &
@@ -216,25 +216,25 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
   close(13)
 
 
-  open(unit=13,file="maclaurin.dat")
-  write(13,*) mac_x, " ", mac_y, " ", stab
-  close(13)
+  ! open(unit=13,file="maclaurin.dat")
+  ! write(13,*) mac_x, " ", mac_y, " ", stab
+  ! close(13)
 
-    eggx = log10(1/rho_1i)
-    eggm = frac_core
-    eggr = log10(1/r_core)
+  !   eggx = log10(1/rho_1i)
+  !   eggm = frac_core
+  !   eggr = log10(1/r_core)
 
-    open(unit=12,file='egg.dat',access='APPEND')
-    write(12,*) eggx, eggm, eggr
-    close(12)
+  !   open(unit=12,file='egg.dat',access='APPEND')
+  !   write(12,*) eggx, eggm, eggr
+  !   close(12)
 
-  open(unit=13,file="sc.dat")
-  write(13,*) r_core, frac_core
-  close(13)
+  ! open(unit=13,file="sc.dat")
+  ! write(13,*) r_core, frac_core
+  ! close(13)
 
-  open(unit=13,file="ru.dat")
-  write(13,*) r_core, frac_core, m, h_0, kt, kc, ke
-  close(13)
+  ! open(unit=13,file="ru.dat")
+  ! write(13,*) r_core, frac_core, m, h_0, kt, kc, ke
+  ! close(13)
   
   print*, trim(filename)
   

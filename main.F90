@@ -20,8 +20,8 @@ program main
       real, dimension(numr,numz,numphi) :: enth
       common /vir/enth
 
-      real, allocatable :: rho3d(:,:,:)
-      real, allocatable :: pres3d(:,:,:)      
+      ! real, allocatable :: rho3d(:,:,:)
+      ! real, allocatable :: pres3d(:,:,:)      
 !*
 !************************************************************      
 !*
@@ -44,8 +44,8 @@ program main
       call cpu_time(cpu1)
       print*, "BSCF Started!!"   
       
-      allocate(rho3d(numr,numz,hydrophi))
-      allocate(pres3d(numr,numz,hydrophi))
+      ! allocate(rho3d(numr,numz,hydrophi))
+      ! allocate(pres3d(numr,numz,hydrophi))
 
 
       rho_c = 1.0
@@ -197,30 +197,30 @@ enddo
     kappa1 = rho_c*h_max/(np1+1.0)/rho_c**(gamma1)
     kappa2 = kappa1*rho_1i**gamma1/rho_2i**gamma2
 
-        do i=1,numr
-          do j=1,numz
-             if (rho(i,j,1).gt.rho_2i) then
-               pres(i,j,1) = kappa1 * rho(i,j,1)**(gamma1)
-             else
-               pres(i,j,1) = kappa2 * rho(i,j,1)**(gamma2)
-             endif
-          enddo
-        enddo
+    !     do i=1,numr
+    !       do j=1,numz
+    !          if (rho(i,j,1).gt.rho_2i) then
+    !            pres(i,j,1) = kappa1 * rho(i,j,1)**(gamma1)
+    !          else
+    !            pres(i,j,1) = kappa2 * rho(i,j,1)**(gamma2)
+    !          endif
+    !       enddo
+    !     enddo
 
 
-     do i=1,numr
-        do j=1,numz
-           do k=1,256
-              pres3d(i,j,k)  = pres(i,j,1)
-           enddo
-        enddo
-     enddo
+    !  do i=1,numr
+    !     do j=1,numz
+    !        do k=1,256
+    !           pres3d(i,j,k)  = pres(i,j,1)
+    !        enddo
+    !     enddo
+    !  enddo
 
 
-    open(unit=8,file='pressure.bin',                                   &
-        form='unformatted',convert='BIG_ENDIAN',status='unknown')
-       write(8) pres3d
-    close(8)
+    ! open(unit=8,file='pressure.bin',                                   &
+    !     form='unformatted',convert='BIG_ENDIAN',status='unknown')
+    !    write(8) pres3d
+    ! close(8)
 
 
 
@@ -229,49 +229,49 @@ enddo
 
 !     call print1d(enth,"y",2,"enth")
 !     call print1d(pot,"y",2,"pot")
-     do i=1,numr
-        do j=1,numz
-           do k=1,hydrophi
-              rho3d(i,j,k)  = rho(i,j,1)
-           enddo
-        enddo
-     enddo
+  !    do i=1,numr
+  !       do j=1,numz
+  !          do k=1,hydrophi
+  !             rho3d(i,j,k)  = rho(i,j,1)
+  !          enddo
+  !       enddo
+  !    enddo
 
-     do i=1,numr
-        do j=1,numz
-           do k=1,hydrophi 
-              if (rho3d(i,j,k).lt. 1d-10) then 
-                 rho3d(i,j,k) = 1d-10
-              endif
-           enddo
-        enddo
-     enddo      
+  !    do i=1,numr
+  !       do j=1,numz
+  !          do k=1,hydrophi 
+  !             if (rho3d(i,j,k).lt. 1d-10) then 
+  !                rho3d(i,j,k) = 1d-10
+  !             endif
+  !          enddo
+  !       enddo
+  !    enddo      
 
-     call print2default(rho)
-     call print1default(rho,"x",2)
-     call print1default(rho,"y",2)     
+  !    call print2default(rho)
+  !    call print1default(rho,"x",2)
+  !    call print1default(rho,"y",2)     
      
-   open(unit=12,file="star1_confirm")
-         do j=1,numz
-           do i=1,numr
-             write(12,*) i,j,rho3d(i,j,1)
-           enddo
-           write(12,*)
-         enddo
-  close(12)         
-  print*,"File star1_confirm printed"         
+  !  open(unit=12,file="star1_confirm")
+  !        do j=1,numz
+  !          do i=1,numr
+  !            write(12,*) i,j,rho3d(i,j,1)
+  !          enddo
+  !          write(12,*)
+  !        enddo
+  ! close(12)         
+  ! print*,"File star1_confirm printed"         
   
-!Write binary output file for code initial_conditions_fc.F90 
-    open(unit=8,file='density.bin',                                   &
-        form='unformatted',convert='BIG_ENDIAN',status='unknown')
-       write(8) rho3d
-    close(8)
+! !Write binary output file for code initial_conditions_fc.F90 
+!     open(unit=8,file='density.bin',                                   &
+!         form='unformatted',convert='BIG_ENDIAN',status='unknown')
+!        write(8) rho3d
+!     close(8)
 
 
   open(unit=12,file="star1")
          do j=1,numz
            do i=1,numr
-             write(12,*) i,j,rho3d(i,j,1)
+             write(12,*) i,j,rho(i,j,1)
            enddo
            write(12,*)
          enddo
@@ -279,39 +279,48 @@ enddo
   print*,"File star1 printed"
       
 
-  open(unit=12,file="star2")
-         do j=1,numz
-           do i=1,numr
-             write(12,*) i,j,rho3d(i,j,hydrophi/2)
-           enddo
-           write(12,*)
-         enddo
-  close(12)         
-  print*,"File star2 printed"
+  ! open(unit=12,file="star2")
+  !        do j=1,numz
+  !          do i=1,numr
+  !            write(12,*) i,j,rho3d(i,j,hydrophi/2)
+  !          enddo
+  !          write(12,*)
+  !        enddo
+  ! close(12)         
+  ! print*,"File star2 printed"
   
-  open(unit=12,file="pres1")
-         do j=1,numz
-           do i=1,numr
-             write(12,*) i,j,pres3d(i,j,1)
-           enddo
-           write(12,*)
-         enddo
-  close(12)
-  print*,"File pres1 printed"
+  ! open(unit=12,file="pres1")
+  !        do j=1,numz
+  !          do i=1,numr
+  !            write(12,*) i,j,pres3d(i,j,1)
+  !          enddo
+  !          write(12,*)
+  !        enddo
+  ! close(12)
+  ! print*,"File pres1 printed"
 
 
-  open(unit=12,file="pres2")
-         do j=1,numz
-           do i=1,numr
-             write(12,*) i,j,pres3d(i,j,hydrophi/2)
-           enddo
-           write(12,*)
-         enddo
+  ! open(unit=12,file="pres2")
+  !        do j=1,numz
+  !          do i=1,numr
+  !            write(12,*) i,j,pres3d(i,j,hydrophi/2)
+  !          enddo
+  !          write(12,*)
+  !        enddo
+  ! close(12)
+  ! print*,"File pres2 printed"
+  
+  open(unit=12,file="potential")
+          do j=1,numz
+            do i=1,numr
+              write(12,*) i,j,pot(i,j,1)
+            enddo
+            write(12,*)
+          enddo
   close(12)
-  print*,"File pres2 printed"
+  print*,"File potential printed"
   
-  
-     print*,"Binary file density.bin printed"
+    !  print*,"Binary file density.bin printed"
      print*,"==========================================================================="
       
 
