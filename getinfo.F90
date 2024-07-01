@@ -89,7 +89,7 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
   write (char_mu1,"(F5.1)") mu1
   write (char_mu2,"(F5.1)") mu2
   write (char_rcore,"(F7.4)") r_core
-  write (char_m, "(F7.4)") m
+  write (char_m, "(F7.5)") m
   write (char_m_core, "(F7.4)") m_core
   write (char_frac_core, "(F7.4)") frac_core
   write (char_vol, "(F7.4)") vol

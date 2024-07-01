@@ -197,15 +197,15 @@ enddo
     kappa1 = rho_c*h_max/(np1+1.0)/rho_c**(gamma1)
     kappa2 = kappa1*rho_1i**gamma1/rho_2i**gamma2
 
-    !     do i=1,numr
-    !       do j=1,numz
-    !          if (rho(i,j,1).gt.rho_2i) then
-    !            pres(i,j,1) = kappa1 * rho(i,j,1)**(gamma1)
-    !          else
-    !            pres(i,j,1) = kappa2 * rho(i,j,1)**(gamma2)
-    !          endif
-    !       enddo
-    !     enddo
+        do i=1,numr
+          do j=1,numz
+             if (rho(i,j,1).gt.rho_2i) then
+               pres(i,j,1) = kappa1 * rho(i,j,1)**(gamma1)
+             else
+               pres(i,j,1) = kappa2 * rho(i,j,1)**(gamma2)
+             endif
+          enddo
+        enddo
 
 
     !  do i=1,numr
@@ -268,7 +268,7 @@ enddo
 !     close(8)
 
 
-  open(unit=12,file="star1")
+  open(unit=12,file="star1_0")
          do j=1,numz
            do i=1,numr
              write(12,*) i,j,rho(i,j,1)
@@ -289,15 +289,15 @@ enddo
   ! close(12)         
   ! print*,"File star2 printed"
   
-  ! open(unit=12,file="pres1")
-  !        do j=1,numz
-  !          do i=1,numr
-  !            write(12,*) i,j,pres3d(i,j,1)
-  !          enddo
-  !          write(12,*)
-  !        enddo
-  ! close(12)
-  ! print*,"File pres1 printed"
+  open(unit=12,file="pres1_0")
+         do j=1,numz
+           do i=1,numr
+             write(12,*) i,j,pres(i,j,1)
+           enddo
+           write(12,*)
+         enddo
+  close(12)
+  print*,"File pres1 printed"
 
 
   ! open(unit=12,file="pres2")
@@ -310,7 +310,7 @@ enddo
   ! close(12)
   ! print*,"File pres2 printed"
   
-  open(unit=12,file="potential")
+  open(unit=12,file="potential_0")
           do j=1,numz
             do i=1,numr
               write(12,*) i,j,pot(i,j,1)
