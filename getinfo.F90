@@ -216,25 +216,25 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
   close(13)
 
 
-  open(unit=13,file="maclaurin.dat")
-  write(13,*) mac_x, " ", mac_y, " ", stab
-  close(13)
+  ! open(unit=13,file="maclaurin.dat")
+  ! write(13,*) mac_x, " ", mac_y, " ", stab
+  ! close(13)
 
-    eggx = log10(1/rho_1i)
-    eggm = frac_core
-    eggr = log10(1/r_core)
+  !   eggx = log10(1/rho_1i)
+  !   eggm = frac_core
+  !   eggr = log10(1/r_core)
 
-    open(unit=12,file='egg.dat',access='APPEND')
-    write(12,*) eggx, eggm, eggr
-    close(12)
+  !   open(unit=12,file='egg.dat',access='APPEND')
+  !   write(12,*) eggx, eggm, eggr
+  !   close(12)
 
-  open(unit=13,file="sc.dat")
-  write(13,*) r_core, frac_core
-  close(13)
+  ! open(unit=13,file="sc.dat")
+  ! write(13,*) r_core, frac_core
+  ! close(13)
 
-  open(unit=13,file="ru.dat")
-  write(13,*) r_core, frac_core, m, h_0, kt, kc, ke
-  close(13)
+  ! open(unit=13,file="ru.dat")
+  ! write(13,*) r_core, frac_core, m, h_0, kt, kc, ke
+  ! close(13)
   
   print*, trim(filename)
   

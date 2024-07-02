@@ -87,7 +87,7 @@ program main
       omega_sq=0
       count=0
 
-      do while ((d_c1 .gt. eps).or.(d_c2.gt.eps).or.(d_omega_sq.gt.eps))!&
+      do while ((d_c1.gt.eps).or.(d_c2.gt.eps).or.(d_omega_sq.gt.eps))!&
                 !.or.(VC.gt.eps))
         count=count+1
 
@@ -111,7 +111,7 @@ program main
 
 !Edited for torous        c2=phi_b
 
-	c2=(phi_a*psi_b-phi_b*psi_a)/(psi_b-psi_a)
+  c2=(phi_a*psi_b-phi_b*psi_a)/(psi_b-psi_a)
         omega_sq=(c2-phi_a)/psi_a
 
         h_2i=c2-phi_i-omega_sq*psi_i
@@ -138,15 +138,15 @@ program main
 !Find the new normalized density
         do i=1,numr
           do j=1,numz
-	      if (enth(i,j,1).gt.0) then
-	         if (rho(i,j,1).gt.rho_2i) then
-                   rho(i,j,1)=(enth(i,j,1)/h_max)**np1
-                 else
-              	   rho(i,j,1)=rho_2i_norm*(enth(i,j,1)/h_2i)**np2
-                 endif
-	      else
-                rho(i,j,1)=0.0
+            if (enth(i,j,1).gt.0) then
+              if (rho(i,j,1).gt.rho_2i) then
+                rho(i,j,1)=(enth(i,j,1)/h_max)**np1
+              else
+                rho(i,j,1)=rho_2i_norm*(enth(i,j,1)/h_2i)**np2
               endif
+            else
+              rho(i,j,1)=0.0
+            endif
           enddo
         enddo
 
@@ -289,15 +289,15 @@ enddo
   ! close(12)
   ! print*,"File star2 printed"
 
-  open(unit=12,file="pres1")
-         do j=1,numz
-           do i=1,numr
-             write(12,*) i,j,pres(i,j,1)
-           enddo
-           write(12,*)
-         enddo
-  close(12)
-  print*,"File pres1 printed"
+  ! open(unit=12,file="pres1")
+  !        do j=1,numz
+  !          do i=1,numr
+  !            write(12,*) i,j,pres(i,j,1)
+  !          enddo
+  !          write(12,*)
+  !        enddo
+  ! close(12)
+  ! print*,"File pres1 printed"
 
 
   ! open(unit=12,file="pres2")
@@ -310,6 +310,15 @@ enddo
   ! close(12)
   ! print*,"File pres2 printed"
 
+  open(unit=12,file="potential")
+         do j=1,numz
+           do i=1,numr
+             write(12,*) i,j,pot(i,j,1)
+           enddo
+           write(12,*)
+         enddo
+  close(12)
+  print*,"File potential printed"
 
     !  print*,"Binary file density.bin printed"
      print*,"==========================================================================="
