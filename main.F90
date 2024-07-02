@@ -28,7 +28,7 @@ program main
 !*   Local variables
       real :: w_rot, phi_a, phi_b, h_a, h_b, psi_a,psi_b,phi_c
       real :: rho_c, rho_norm, h_max
-      integer :: i,j,k,count
+      integer :: i,j,k,count,n
       real :: cpu1,cpu2, p_max,cput, kappa1, kappa2
       real :: phi_i, psi_i, rho_2i, gamma1, gamma2, h_2i
       real :: c1,c2,omega_sq,d_c1,d_c2,d_omega_sq,c1_old,c2_old,&
@@ -267,17 +267,17 @@ enddo
 !        write(8) rho3d
 !     close(8)
 
-
-  open(unit=12,file="star1")
-         do j=1,numz
-           do i=1,numr
-             write(12,*) i,j,rho(i,j,1)
-           enddo
-           write(12,*)
-         enddo
-  close(12)
-  print*,"File star1 printed"
-
+  do n=0,numprocess-1
+    open(unit=12,file="star1_"//trim(adjustl(char(n+48))))
+            do j=1,numz
+              do i=1,numr
+                write(12,*) i,j,rho(i,j,1)
+              enddo
+              write(12,*)
+            enddo
+    close(12)
+    print*,"File star1_",trim(adjustl(char(n+48)))," printed"
+  enddo
 
   ! open(unit=12,file="star2")
   !        do j=1,numz
@@ -289,16 +289,17 @@ enddo
   ! close(12)
   ! print*,"File star2 printed"
 
-  ! open(unit=12,file="pres1")
-  !        do j=1,numz
-  !          do i=1,numr
-  !            write(12,*) i,j,pres(i,j,1)
-  !          enddo
-  !          write(12,*)
-  !        enddo
-  ! close(12)
-  ! print*,"File pres1 printed"
-
+  do n=0,numprocess-1
+    open(unit=12,file="pres1_"//trim(adjustl(char(n+48))))
+            do j=1,numz
+              do i=1,numr
+                write(12,*) i,j,pres(i,j,1)
+              enddo
+              write(12,*)
+            enddo
+    close(12)
+    print*,"File pres1_",trim(adjustl(char(n+48)))," printed"
+  enddo
 
   ! open(unit=12,file="pres2")
   !        do j=1,numz
@@ -310,15 +311,17 @@ enddo
   ! close(12)
   ! print*,"File pres2 printed"
 
-  open(unit=12,file="potential")
-         do j=1,numz
-           do i=1,numr
-             write(12,*) i,j,pot(i,j,1)
-           enddo
-           write(12,*)
-         enddo
-  close(12)
-  print*,"File potential printed"
+  do n=0,numprocess-1
+    open(unit=12,file="potential_"//trim(adjustl(char(n+48))))
+            do j=1,numz
+              do i=1,numr
+                write(12,*) i,j,pot(i,j,1)
+              enddo
+              write(12,*)
+            enddo
+    close(12)
+    print*,"File potential_",trim(adjustl(char(n+48)))," printed"
+  enddo
 
     !  print*,"Binary file density.bin printed"
      print*,"==========================================================================="
