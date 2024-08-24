@@ -210,11 +210,20 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
 
   write(14,*) "============================================================================"
 
-  open(unit=13,file="hachisu.dat")
-  write(13,*) trim(char_rb)," ",trim(char_h_0)," ",trim(char_m),"",trim(char_vol)," ",    &
-  trim(char_am), " ",trim(char_T)," ", trim(char_W)," ",trim(char_3P)," ",trim(char_p_max)
-  close(13)
+  ! open(unit=13,file="hachisu.dat")
+  ! write(13,*) trim(char_rb)," ",trim(char_h_0)," ",trim(char_m),"",trim(char_vol)," ",    &
+  ! trim(char_am), " ",trim(char_T)," ", trim(char_W)," ",trim(char_3P)," ",trim(char_p_max)
+  ! close(13)
 
+  open(unit=13, file="info.txt")
+  ! write r_core, n_core, n_env, Resolution, rb, Omega, M with single space after =
+  write(13, '(A, F0.4)') "R_core          = ", r_core
+  write(13, '(A, F0.1)') "mpol_in         = ", np1
+  write(13, '(A, F0.1)') "mpol_out        = ", np2
+  write(13, '(A, I0)') "nr_model        = ", numr
+  write(13, '(A, F0.4)') "rb              = ", rb
+  write(13, '(A, F0.5)') "Omega           = ", omega
+  write(13, '(A, F0.4)') "M               = ", m
 
   ! open(unit=13,file="maclaurin.dat")
   ! write(13,*) mac_x, " ", mac_y, " ", stab
