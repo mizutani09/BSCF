@@ -4,7 +4,7 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
   include 'runhydro.h'
   real::rav, mom, m, vol, h_0,am, mac_x, mac_y,  rb, h_max, p_max, cput,  &
         omega, T, W, P, rho_2i, m_core, frac_core, r_core, kappa1, kappa2,   &
-        rho_1i, VC, stab, amsq, j2, j4, j6
+        rho_1i, VC, stab, amsq, j2, j4, j6, mod_omega
   character(len=100) :: filename
   character*20 char_np1, char_ax, char_by, char_numr, char_numz, char_m
   character*20 char_vol, char_rav, char_mom, char_h_0, char_am, char_rb,     &
@@ -51,7 +51,9 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
   kappa1 = h_max/(np1+1.0)*1.0**(1+1.0/np1)
   kappa2 = kappa1*(rho_1i)**(1+1.0/np1)/rho_2i**(1+1.0/np2)    
   
-  stab = T/abs(W) 
+  stab = T/abs(W)
+
+  mod_omega = omega / sqrt(m)
 
   call findj(m,j2,j4,j6)
 
@@ -246,5 +248,6 @@ subroutine getinfo(h_0,h_max,rho_2i,count,cput)
   ! close(13)
   
   print*, trim(filename)
+  print*, "mod_omega", mod_omega
   
   end subroutine getinfo
