@@ -37,6 +37,7 @@ program main
       real :: k1,k2, re, rho_1i, h_1i, h_norm, rho_2i_norm
       character*20 char_it
       real, dimension(numr,numz,numphi) :: pres
+      character(len=15) :: file_name
 !*
 !************************************************************
 
@@ -268,7 +269,8 @@ enddo
 !     close(8)
 
   do n=0,numprocess-1
-    open(unit=12,file="star1_"//trim(adjustl(char(n+48))))
+    write(file_name, '(A,I0)') 'star1_', n
+    open(unit=12,file=trim(file_name))
             do j=1,numz
               do i=1,numr
                 write(12,*) i,j,rho(i,j,1)
@@ -276,7 +278,7 @@ enddo
               write(12,*)
             enddo
     close(12)
-    print*,"File star1_",trim(adjustl(char(n+48)))," printed"
+    print*,"File ", trim(file_name), " printed"
   enddo
 
   ! open(unit=12,file="star2")
@@ -290,7 +292,8 @@ enddo
   ! print*,"File star2 printed"
 
   do n=0,numprocess-1
-    open(unit=12,file="pres1_"//trim(adjustl(char(n+48))))
+    write(file_name, '(A,I0)') 'pres1_', n
+    open(unit=12,file=trim(file_name))
             do j=1,numz
               do i=1,numr
                 write(12,*) i,j,pres(i,j,1)
@@ -298,7 +301,7 @@ enddo
               write(12,*)
             enddo
     close(12)
-    print*,"File pres1_",trim(adjustl(char(n+48)))," printed"
+    print*,"File ", trim(file_name), " printed"
   enddo
 
   ! open(unit=12,file="pres2")
@@ -312,7 +315,8 @@ enddo
   ! print*,"File pres2 printed"
 
   do n=0,numprocess-1
-    open(unit=12,file="potential_"//trim(adjustl(char(n+48))))
+    write(file_name, '(A,I0)') 'potential_', n
+    open(unit=12,file=trim(file_name))
             do j=1,numz
               do i=1,numr
                 write(12,*) i,j,pot(i,j,1)
@@ -320,7 +324,7 @@ enddo
               write(12,*)
             enddo
     close(12)
-    print*,"File potential_",trim(adjustl(char(n+48)))," printed"
+    print*,"File ", trim(file_name), " printed"
   enddo
 
     !  print*,"Binary file density.bin printed"
